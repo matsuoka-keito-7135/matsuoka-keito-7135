@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>商品一覧</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<header th:replace="header"></header>
+	<hr>
+	<nav>
+		<a href="/items">全商品</a>
+		<a th:each="category:${categories}" th:href="@{/items(categoryId=${category.id})}">
+			<span th:text="${category.name}" style="padding-left: 10px;"></span>
+		</a>
+		<a href="/cart" style="padding-left: 10px;">買い物リストを見る</a>
+		<form action="/items" method="get">
+			<input type="text" name="keyword" placeholder="品目名">
+			<button>検索</button>
+		</form>
+	</nav>
+	<main>
+		<table>
+			<tr>
+				<th>品目名</th>
+				<th>カテゴリー名</th>
+				<th>賞味期限</th>
+				<th>編集</th>
+				<th>削除</th>
+				<th>買い物リストに追加</th>
+			</tr>
+			<tr th:each="item:${items}">
+				<td th:text="${item.name}"></td>
+				<td>
+					<div th:each="category:${categories}">
+						<span th:if="${item.categoryId} eq ${category.id}" th:text="${category.name}"></span>
+					</div>
+				</td>
+				<td th:text="${item.limitDate}"></td>
+				<td>
+					<form th:action="@{/items/{itemId}/edit(itemId=${item.id})}" method="get">
+						<button>更新</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/items/{itemId}/delete(itemId=${item.id})}" method="post">
+						<button>削除</button>
+					</form>
+				</td>
+				<td>
+					<form action="/items/addWant" method="post">
+					<button>カートに追加</button>
+				</td>
+			</tr>
+		</table>
+		<a href="/items/new">品目を登録する</a>
+	</main>
+	<hr>
+	<footer th:replace="footer"></footer>
+</body>
+</html>
