@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.Item;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
+
+	List<Item> findByUserId(Integer userId);
+
 	// SELECT * FROM items WHERE category_id = ?
-	List<Item> findAllByCategoryIdOrderByLimitDateAsc(Integer categoryId);
+	List<Item> findByUserIdAndCategoryIdOrderByLimitDateAsc(Integer userId, Integer categoryId);
 
-	List<Item> findAllByNameContainingOrderByLimitDateAsc(String keyword);
+	List<Item> findByUserIdAndNameContainingOrderByLimitDateAsc(Integer userId, String keyword);
 
-	List<Item> findAllByOrderByLimitDateAsc();
+	List<Item> findByUserIdOrderByLimitDateAsc(Integer userId);
 }

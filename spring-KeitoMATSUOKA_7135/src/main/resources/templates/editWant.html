@@ -10,12 +10,12 @@
 	<header th:replace="header"></header>
 	<hr>
 	<main>
-		<form th:action="@{/items/{itemId}/edit(itemId=${item.id})}" method="post">
+		<form th:action="@{/wants/{wantId}/edit(wantId=${want.id})}" method="post">
 			<table border="1">
 				<tr>
 					<th>商品名</th>
 					<td>
-						<input type="text" name="name" th:value="${item.name}">
+						<input type="text" name="name" th:value="${want.name}">
 					</td>
 				</tr>
 				<tr>
@@ -25,18 +25,6 @@
 							<option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}">
 							</option>
 						</select>
-					</td>
-				</tr>
-				<tr>
-					<th>賞味期限</th>
-					<td>
-						<input type="date" name="limitDate" th:value="${limitDate}">
-					</td>
-				</tr>
-				<tr>
-					<th>メモ</th>
-					<td>
-						<textarea name="memo" th:field="${item.memo}"></textarea>
 					</td>
 				</tr>
 			</table>

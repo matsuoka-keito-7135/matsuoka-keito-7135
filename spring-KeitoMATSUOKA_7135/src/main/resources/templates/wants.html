@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th= "http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>買い物リスト</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<header th:replace="header"></header>
+	<hr>
+	<nav>
+		<a href="/wants">全買い物リスト</a>
+	</nav>
+	<main>
+		<a href="/wants/new" style="padding-right: 10px;">買い物リストを登録する</a>
+		<br>
+		<table>
+			<tr>
+				<th>品目名</th>
+				<th>カテゴリー名</th>
+				<th>更新</th>
+				<th>削除</th>
+			</tr>
+			<tr th:each="want:${wants}">
+				<td th:text="${want.name}"></td>
+				<td>
+					<div th:each="category:${categories}">
+						<span th:if="${want.categoryId} eq ${category.id}" th:text="${category.name}"></span>
+					</div>
+				</td>
+				<td>
+					<form th:action="@{/wants/{want0Id}/edit(wantId=${want.id})}" method="get">
+						<button>更新</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="@{/wants/{wantId}/delete(wantId=${want.id})}" method="post">
+						<button>削除</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</main>
+	<hr>
+	<footer th:replace="footer"></footer>
+</body>
+</html>

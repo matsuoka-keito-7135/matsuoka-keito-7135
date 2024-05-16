@@ -1,18 +1,22 @@
 -- categories テーブルにデータを挿入
 INSERT INTO categories (name) VALUES
-('ドレッシング'),
+('野菜・果物'),
+('肉・魚'),
 ('調味料'),
 ('その他');
 
 -- users テーブルにデータを挿入
 INSERT INTO users (email, name, password) VALUES
-('tanaka@aaa.com', '田中太郎', 'test123'),
-('suzuki@aaa.com', '鈴木一郎', 'test456');
+('abc@abc', '松岡慧人', 'a');
 
 -- items テーブルにデータを挿入
 INSERT INTO items (limit_date, category_id, user_id, name, memo) VALUES
-('2024-05-30', 3, 1, 'かにかま', 'おいしい');
+('2024-05-28', 1, 1, 'もやし', '今日中に消費'),
+('2024-06-01', 2, 1, '豚肉の細切れ', '生姜焼きに使う'),
+('2025-10-16', 3, 1, '塩コショウ', 'まだいっぱい残ってる'),
+('2024-05-30', 4, 1, 'かにかま', '卵焼きに入れる');
 
 -- wantsテーブルにデータを挿入
 INSERT INTO wants (category_id, user_id, name) VALUES
-(1, 2, '胡麻ドレッシング');
+(2, 1, '鯛のお刺身'),
+(3, 1, '青じそドレッシング');

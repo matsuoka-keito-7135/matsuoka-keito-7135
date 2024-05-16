@@ -85,4 +85,25 @@ public class Item {
 
 	}
 
+	public Item(LocalDate limitDate) {
+		this.limitDate = limitDate;
+	}
+
+	public Item(String name, Integer categoryId, LocalDate limitDate, String memo, Integer userId) {
+		this.name = name;
+		this.categoryId = categoryId;
+		this.limitDate = limitDate;
+		this.memo = memo;
+		this.userId = userId;
+	}
+
+	public Item(Integer id, String name, Integer categoryId, LocalDate limitDate, String memo, Integer userId) {
+		this.id = id;
+		this.name = name;
+		this.categoryId = categoryId;
+		this.limitDate = limitDate;
+		this.memo = memo;
+		this.userId = userId;
+	}
+
 }

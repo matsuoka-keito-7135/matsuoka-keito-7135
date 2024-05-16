@@ -9,23 +9,25 @@
 	<header th:replace="header"></header>
 	<hr>
 	<nav>
-		<a href="/items">全商品</a>
+		<a href="/items">全品目</a>
 		<a th:each="category:${categories}" th:href="@{/items(categoryId=${category.id})}">
 			<span th:text="${category.name}" style="padding-left: 10px;"></span>
 		</a>
-		<a href="/cart" style="padding-left: 10px;">買い物リストを見る</a>
+		<a href="/wants" style="padding-left: 10px;">買い物リストを見る</a>
 		<form action="/items" method="get">
 			<input type="text" name="keyword" placeholder="品目名">
 			<button>検索</button>
 		</form>
 	</nav>
 	<main>
+		<a href="/items/new" style="padding-right: 10px;">品目を登録する</a>
+		<br>
 		<table>
 			<tr>
 				<th>品目名</th>
 				<th>カテゴリー名</th>
 				<th>賞味期限</th>
-				<th>編集</th>
+				<th>更新</th>
 				<th>削除</th>
 				<th>買い物リストに追加</th>
 			</tr>
@@ -48,12 +50,12 @@
 					</form>
 				</td>
 				<td>
-					<form action="/items/addWant" method="post">
-					<button>カートに追加</button>
+					<form th:action="@{/items/{itemId}/addWant(itemId=${item.id})}" method="post">
+						<button>買い物リストに追加</button>
+					</form>
 				</td>
 			</tr>
 		</table>
-		<a href="/items/new">品目を登録する</a>
 	</main>
 	<hr>
 	<footer th:replace="footer"></footer>

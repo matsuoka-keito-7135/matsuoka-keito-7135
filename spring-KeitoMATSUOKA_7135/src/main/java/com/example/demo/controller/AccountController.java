@@ -63,7 +63,7 @@ public class AccountController {
 		}
 
 		//Userクラスのオブジェクトに、email・passと一致するインデックス0番目のデータを代入（初期化）
-		User user = userRepository.findByEmailAndPassword(email, password).get(0);
+		User user = users.get(0);
 
 		//ログイン情報が一致する場合、セッション管理されたアカウント情報に名前をセット
 		account.setName(user.getName());
